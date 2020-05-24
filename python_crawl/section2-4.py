@@ -1,6 +1,12 @@
 import requests
 from lxml.html import fromstring, tostring
 
+import sys
+import io
+
+sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding = 'utf-8')
+sys.stderr = io.TextIOWrapper(sys.stderr.detach(), encoding = 'utf-8')
+
 def main():
     session = requests.Session()
 
@@ -24,6 +30,7 @@ def scrape_news_list_page(response):
         # print()
 
         name, url = extract_contents(a)
+        name = name
         urls[name] = url
     return urls
 
