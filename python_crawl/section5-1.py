@@ -13,8 +13,8 @@ html = '''
             <a href="http://example.com/elsie" class="sister" id="link1">Elsie</a>
             <a href="http://example.com/lacie" class="sister" id="link2">Laice</a>
             <a data-io="link3" href="http://example.com/little" class="brother" id="link3">Title</a>
-        </p class="story">
-        <p>
+        </p>
+        <p class="story">
             story ...
         </p>
     </body>
@@ -62,4 +62,29 @@ link3 = soup.find('a')
 link4 = soup.find('a', {"class": "brother", "data-io": "link3"})
 # print('link4 >> ', link4)
 
+link5 = soup.select_one('p.title > b')
+# print('link5 >> ', link5)
+# print('link5.text >> ', link5.text)
+# print('link5.string >> ', link5.string)
+link6 = soup.select_one('a#link1')
+# print('link6 >> ', link6)
+# print('link6.string >> ', link6.string)
+# print('link6.text >> ', link6.text)
+link7 = soup.select_one('a[data-io="link3"]')
+# print('link7 >> ', link7)
+link8 = soup.select('p.story > a')
+# print('link8 >> ', link8)
+link9 = soup.select('p.story > a:nth-of-type(2)')
+# print('link9 >> ', link9)
 
+for t in soup.select('p.story'):
+    temp = t.find_all('a')
+    print('temp >> ', temp)
+
+    if temp:
+        for v in temp:
+            # print('v >> ', v)
+            print('v.string >> ', v.string)
+    else:
+        # print('t >> ', t)
+        print('t.string >> ', t.string)
